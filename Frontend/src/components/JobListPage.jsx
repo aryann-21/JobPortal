@@ -25,25 +25,81 @@ const JobListPage = () => {
   }, []);
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
-      <div className="w-full max-w-3xl p-8 space-y-6 bg-white rounded-lg shadow-md">
-        <h2 className="text-3xl font-bold text-center text-gray-800">Available Jobs</h2>
-        <ul className="space-y-4">
+    <div className="min-h-screen bg-gray-100">
+      {/* Navbar */}
+      <nav className="bg-blue-600 text-white py-6 px-8 shadow-md">
+        <div className="container mx-auto flex flex-col sm:flex-row items-center justify-between px-4">
+          <h1 className="text-3xl font-semibold mb-4 sm:mb-0">JobPortal</h1>
+          <ul className="flex flex-wrap justify-center sm:space-x-6 space-y-2 sm:space-y-0 text-lg font-semibold">
+            <li>
+              <Link to="/jobs" className="hover:text-gray-200">
+                Home
+              </Link>
+            </li>
+            <li>
+              <Link to="/jobs" className="hover:text-gray-200">
+                About Us
+              </Link>
+            </li>
+            <li>
+              <Link to="/jobs" className="hover:text-gray-200">
+                Contact
+              </Link>
+            </li>
+            <li>
+              <Link to="/jobs" className="hover:text-gray-200">
+                Dashboard
+              </Link>
+            </li>
+            <li>
+              <Link to="/jobs" className="hover:text-gray-200">
+                Jobs
+              </Link>
+            </li>
+            <li className='text-red-600'>
+              <Link to="/" className="hover:text-red-700">
+                Logout
+              </Link>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+      {/* Job List */}
+      <div className="container mx-auto py-8 px-4">
+        <div className="text-3xl font-bold text-center pt-5 text-gray-800 mb-10 bg-gray-200 h-20">Available Jobs</div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-6">
           {jobs.length > 0 ? (
             jobs.map((job) => (
-              <li key={job._id} className="p-4 bg-gray-50 rounded-md shadow-sm hover:shadow-md">
-                <Link
-                  to={`/jobs/${job._id}`}
-                  className="text-xl font-semibold text-blue-600 hover:underline"
-                >
-                  {job.title} - <span className="text-gray-700">{job.company}</span>
-                </Link>
-              </li>
+              <div
+                key={job._id}
+                className="bg-white rounded-lg shadow-md hover:shadow-lg overflow-hidden"
+              >
+                <img
+                  src={job.photo} // Placeholder for missing images
+                  alt={job.title}
+                  className="w-full h-50 object-cover"
+                />
+                <div className="p-4 h-32">
+                  <h3 className="text-xl font-semibold text-gray-800">
+                    {job.title}
+                  </h3>
+                  <p className="text-gray-600">{job.company}</p>
+                  <Link
+                    to={`/jobs/${job._id}`}
+                    className="inline-block mt-4 text-blue-600 hover:underline"
+                  >
+                    View Details
+                  </Link>
+                </div>
+              </div>
             ))
           ) : (
-            <p className="text-center text-gray-600">No jobs available at the moment.</p>
+            <p className="text-center text-gray-600 col-span-full">
+              No jobs available at the moment.
+            </p>
           )}
-        </ul>
+        </div>
       </div>
     </div>
   );

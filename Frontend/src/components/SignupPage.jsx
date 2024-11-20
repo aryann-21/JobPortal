@@ -26,8 +26,16 @@ const SignupPage = () => {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100">
-      <div className="w-full max-w-md p-8 space-y-6 bg-white rounded-lg shadow-md">
+    <div
+      className="flex items-center justify-center min-h-screen bg-cover bg-center relative"
+      style={{
+        backgroundImage: "url('https://plus.unsplash.com/premium_photo-1667668224817-284e86fe56ab?q=80&w=2051&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')",
+      }}
+    >
+      {/* Overlay for subtle blur */}
+      <div className="absolute inset-0 bg-white bg-opacity-20 backdrop-blur-sm"></div>
+
+      <div className="relative w-full max-w-md p-8 space-y-6 bg-white bg-opacity-60 rounded-lg shadow-md backdrop-blur-sm">
         <h2 className="text-2xl font-bold text-center text-gray-800">Signup</h2>
         <form className="space-y-4" onSubmit={handleSignup}>
           <div>
@@ -80,11 +88,12 @@ const SignupPage = () => {
           </button>
         </form>
         <div className="text-center">
+        Already have an account?{' '}
           <button
             onClick={() => navigate('/')}
             className="text-green-600 hover:text-green-700 focus:outline-none"
           >
-            Already have an account? Login
+            Login
           </button>
         </div>
       </div>
